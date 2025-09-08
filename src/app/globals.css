@@ -69,8 +69,13 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
     transition: background-color 500ms ease-in-out, color 500ms ease-in-out;
+  }
+  
+  /* Make body background transparent so Particles can show through */
+  body {
+    background: transparent !important;
   }
   
   /* Smooth transitions for theme changes */
