@@ -61,9 +61,12 @@ export default function RootLayout({
           src={process.env.UMAMI_DOMAIN}
           data-website-id={process.env.UMAMI_SITE_ID}
         ></Script>
-        {/* Preload GIFs for better performance */}
+        {/* Preload assets for better performance */}
         <link rel="preload" as="image" href="/assets/images/blue_comet.gif" />
         <link rel="preload" as="image" href="/assets/images/transparent_blackhole.gif" />
+        <link rel="preload" as="image" href="/assets/images/beach_ball.png" />
+        <link rel="preload" as="image" href="/assets/images/cloud.png" />
+        <link rel="preload" as="image" href="/assets/images/seagull.gif" />
         {/* <Analytics /> */}
       </head>
       <body>

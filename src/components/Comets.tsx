@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import { useMousePosition } from "@/utils/mouse";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 interface CometProps {
   className?: string;
@@ -22,7 +23,7 @@ interface Comet {
   opacity: number;
   rotation: number;
   rotationSpeed: number;
-  type: 'comet' | 'blackhole';
+  type: 'comet' | 'blackhole' | 'beachball' | 'cloud' | 'seagull';
 }
 
 export default function Comets({
@@ -37,8 +38,9 @@ export default function Comets({
   const [comets, setComets] = useState<Comet[]>([]);
   const { x: mouseX, y: mouseY } = useMousePosition();
   const [canvasSize, setCanvasSize] = useState({ w: 0, h: 0 });
+  const { theme } = useTheme();
 
-  // Initialize comets and black holes
+  // Initialize elements based on theme
   useEffect(() => {
     if (!containerRef.current) return;
 
@@ -47,40 +49,92 @@ export default function Comets({
 
     const newComets: Comet[] = [];
     
-    // Add regular comets
-    for (let i = 0; i < quantity; i++) {
-      newComets.push({
-        id: i,
-        x: Math.random() * rect.width,
-        y: Math.random() * rect.height,
-        vx: (Math.random() - 0.5) * speed * 2,
-        vy: (Math.random() - 0.5) * speed * 2,
-        size: size + Math.random() * 10,
-        opacity: 0.5 + Math.random() * 0.5,
-        rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 1,
-        type: 'comet',
-      });
-    }
-    
-    // Add 2 black holes with different properties
-    for (let i = 0; i < 2; i++) {
-      newComets.push({
-        id: quantity + i,
-        x: Math.random() * rect.width,
-        y: Math.random() * rect.height,
-        vx: (Math.random() - 0.5) * speed * 0.5, // Slower movement
-        vy: (Math.random() - 0.5) * speed * 0.5,
-        size: (size * 5) + Math.random() * 24, // 20% larger (1.5 * 1.2 = 1.8)
-        opacity: 0.6 + Math.random() * 0.4,
-        rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 0.5, // Slower rotation
-        type: 'blackhole',
-      });
+    if (theme === 'dark') {
+      // Dark mode: comets and black holes
+      // Add regular comets
+      for (let i = 0; i < quantity; i++) {
+        newComets.push({
+          id: i,
+          x: Math.random() * rect.width,
+          y: Math.random() * rect.height,
+          vx: (Math.random() - 0.5) * speed * 2,
+          vy: (Math.random() - 0.5) * speed * 2,
+          size: size + Math.random() * 10,
+          opacity: 0.5 + Math.random() * 0.5,
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 1,
+          type: 'comet',
+        });
+      }
+      
+      // Add 2 black holes with different properties
+      for (let i = 0; i < 2; i++) {
+        newComets.push({
+          id: quantity + i,
+          x: Math.random() * rect.width,
+          y: Math.random() * rect.height,
+          vx: (Math.random() - 0.5) * speed * 0.5, // Slower movement
+          vy: (Math.random() - 0.5) * speed * 0.5,
+          size: (size * 5) + Math.random() * 24, // 20% larger (1.5 * 1.2 = 1.8)
+          opacity: 0.6 + Math.random() * 0.4,
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 0.5, // Slower rotation
+          type: 'blackhole',
+        });
+      }
+    } else {
+      // Light mode: beach balls, clouds, and seagulls
+      // Add 5 beach balls
+      for (let i = 0; i < 5; i++) {
+        newComets.push({
+          id: i,
+          x: Math.random() * rect.width,
+          y: Math.random() * rect.height,
+          vx: (Math.random() - 0.5) * speed * 1.5,
+          vy: (Math.random() - 0.5) * speed * 1.5,
+          size: size + Math.random() * 15,
+          opacity: 0.7 + Math.random() * 0.3,
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 2,
+          type: 'beachball',
+        });
+      }
+      
+      // Add 6-7 clouds (horizontal movement only)
+      for (let i = 0; i < 6 + Math.floor(Math.random() * 2); i++) {
+        newComets.push({
+          id: 5 + i,
+          x: Math.random() * rect.width,
+          y: Math.random() * rect.height * 0.6, // Keep clouds in upper portion
+          vx: (Math.random() - 0.5) * speed * 0.8, // Horizontal movement only
+          vy: 0, // No vertical movement for clouds
+          size: (size * 3) + Math.random() * 60, // 3x bigger clouds
+          opacity: 0.6 + Math.random() * 0.4,
+          rotation: 0, // Clouds don't rotate
+          rotationSpeed: 0,
+          type: 'cloud',
+        });
+      }
+      
+      // Add 3 seagulls
+      for (let i = 0; i < 3; i++) {
+        newComets.push({
+          id: 11 + i,
+          x: Math.random() * rect.width,
+          y: Math.random() * rect.height,
+          vx: (Math.random() - 0.5) * speed * 1.2,
+          vy: (Math.random() - 0.5) * speed * 1.2,
+          size: size * 0.8 + Math.random() * 8,
+          opacity: 0.8 + Math.random() * 0.2,
+          rotation: 0, // Seagulls maintain orientation
+          rotationSpeed: 0,
+          type: 'seagull',
+        });
+      }
     }
     
     setComets(newComets);
-  }, [quantity, speed, size]);
+  }, [quantity, speed, size, theme]);
 
   // Update canvas size on resize
   useEffect(() => {
@@ -112,8 +166,14 @@ export default function Comets({
         const attraction = distance < 120 ? (120 - distance) / 120 : 0;
         
         // Update velocity with mouse attraction (reduced strength)
-        const newVx = comet.vx + (dx * attraction * 0.0003);
-        const newVy = comet.vy + (dy * attraction * 0.0003);
+        let newVx = comet.vx + (dx * attraction * 0.0003);
+        let newVy = comet.vy + (dy * attraction * 0.0003);
+        
+        // Apply movement restrictions based on type
+        if (comet.type === 'cloud') {
+          // Clouds only move horizontally
+          newVy = 0;
+        }
         
         // Add minimal randomness to movement
         const newX = comet.x + newVx + (Math.random() - 0.5) * 0.1;
@@ -172,10 +232,22 @@ export default function Comets({
             perspective: '1000px',
           }}
         >
-          {/* Optimized GIF with performance optimizations */}
+          {/* Optimized images with performance optimizations */}
           <Image
-            src={comet.type === 'blackhole' ? "/assets/images/transparent_blackhole.gif" : "/assets/images/blue_comet.gif"}
-            alt={comet.type === 'blackhole' ? "Black Hole" : "Comet"}
+            src={
+              comet.type === 'blackhole' ? "/assets/images/transparent_blackhole.gif" :
+              comet.type === 'comet' ? "/assets/images/blue_comet.gif" :
+              comet.type === 'beachball' ? "/assets/images/beach_ball.png" :
+              comet.type === 'cloud' ? "/assets/images/cloud.png" :
+              "/assets/images/seagull.gif"
+            }
+            alt={
+              comet.type === 'blackhole' ? "Black Hole" :
+              comet.type === 'comet' ? "Comet" :
+              comet.type === 'beachball' ? "Beach Ball" :
+              comet.type === 'cloud' ? "Cloud" :
+              "Seagull"
+            }
             width={comet.size}
             height={comet.size}
             className="drop-shadow-lg"
@@ -186,10 +258,16 @@ export default function Comets({
               // Different effects for different types
               filter: comet.type === 'blackhole' 
                 ? `brightness(${0.8 + Math.sin(comet.id) * 0.3}) contrast(1.1)` 
-                : `brightness(${0.9 + Math.sin(comet.id) * 0.2})`,
+                : comet.type === 'comet'
+                ? `brightness(${0.9 + Math.sin(comet.id) * 0.2})`
+                : comet.type === 'beachball'
+                ? `brightness(${1.0 + Math.sin(comet.id) * 0.1}) saturate(1.1)`
+                : comet.type === 'cloud'
+                ? `brightness(${0.9 + Math.sin(comet.id) * 0.1})`
+                : `brightness(${1.0 + Math.sin(comet.id) * 0.1})`,
             }}
             priority={comet.id < 3} // Prioritize first 3 elements
-            unoptimized={false} // Let Next.js optimize the GIF
+            unoptimized={comet.type === 'comet' || comet.type === 'blackhole' || comet.type === 'seagull'} // GIFs need unoptimized
           />
         </div>
       ))}
