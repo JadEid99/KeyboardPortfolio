@@ -70,5 +70,15 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    transition: background-color 500ms ease-in-out, color 500ms ease-in-out;
+  }
+  
+  /* Smooth transitions for theme changes */
+  * {
+    transition: background-color 500ms ease-in-out, 
+                border-color 500ms ease-in-out, 
+                color 500ms ease-in-out, 
+                fill 500ms ease-in-out, 
+                stroke 500ms ease-in-out;
   }
 }

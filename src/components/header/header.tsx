@@ -6,7 +6,7 @@ import styles from "./style.module.scss";
 import { opacity, background } from "./anim";
 import Nav from "./nav";
 import { cn } from "@/lib/utils";
-import FunnyThemeToggle from "../theme/funny-theme-toggle";
+import ModernThemeToggle from "../theme/modern-theme-toggle";
 import { Button } from "../ui/button";
 import { config } from "@/data/config";
 
@@ -52,7 +52,7 @@ const Header = ({ loader }: HeaderProps) => {
           </Button>
         </Link>
 
-        <FunnyThemeToggle className="w-6 h-6 mr-4" />
+        <ModernThemeToggle className="mr-4" />
         <Button
           variant={"ghost"}
           onClick={() => setIsActive(!isActive)}

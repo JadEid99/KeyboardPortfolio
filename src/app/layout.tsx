@@ -70,7 +70,7 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          disableTransitionOnChange
+          enableSystem={false}
         >
           <Particles
             className="fixed inset-0 -z-10 animate-fade-in"
