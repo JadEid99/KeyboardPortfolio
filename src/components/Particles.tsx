@@ -3,6 +3,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useMousePosition } from "@/utils/mouse";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 interface ParticlesProps {
   className?: string;
@@ -27,6 +28,7 @@ export default function Particles({
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -47,7 +49,7 @@ export default function Particles({
 
   useEffect(() => {
     initCanvas();
-  }, [refresh]);
+  }, [refresh, theme]);
 
   const initCanvas = () => {
     resizeCanvas();
@@ -125,7 +127,16 @@ export default function Particles({
       context.current.translate(translateX, translateY);
       context.current.beginPath();
       context.current.arc(x, y, size, 0, 2 * Math.PI);
-      context.current.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+      
+      // Theme-based colors
+      if (theme === 'dark') {
+        // Dark mode: white particles
+        context.current.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+      } else {
+        // Light mode: light blue sky particles
+        context.current.fillStyle = `rgba(135, 206, 250, ${alpha})`; // Light sky blue
+      }
+      
       context.current.fill();
       context.current.setTransform(dpr, 0, 0, dpr, 0, 0);
 
@@ -231,10 +242,25 @@ export default function Particles({
     <div
       className={cn(
         className,
-        "dark:bg-gradient-to-tl from-black via-zinc-600/20 to-black"
+        theme === 'dark' 
+          ? "bg-gradient-to-tl from-black via-zinc-600/20 to-black"
+          : "bg-gradient-to-tl from-sky-200 via-blue-100 to-sky-300"
       )}
       ref={canvasContainerRef}
       aria-hidden="true"
+      style={{
+        // Force the background to take priority over body background
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: -10,
+        ...(theme === 'dark' 
+          ? { background: 'linear-gradient(to top left, #000000, rgba(82, 82, 91, 0.2), #000000)' }
+          : { background: 'linear-gradient(to top left, #e0f2fe, #dbeafe, #bae6fd)' }
+        )
+      }}
     >
       <canvas ref={canvasRef} />
     </div>
