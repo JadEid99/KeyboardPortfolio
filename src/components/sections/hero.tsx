@@ -29,8 +29,10 @@ const HeroSection = () => {
                 <BlurIn delay={1}>
                   <h1
                     className={cn(
-                      "font-thin text-6xl text-transparent text-slate-800 text-center",
-                      "cursor-default text-edge-outline font-display sm:text-7xl md:text-9xl "
+                      "font-thin text-6xl text-center",
+                      "cursor-default font-display sm:text-7xl md:text-9xl",
+                      "text-black dark:text-sky-400",
+                      "transition-colors duration-100 ease-in-out"
                     )}
                   >
                     {config.author.split(" ")[0]}
@@ -58,7 +60,7 @@ const HeroSection = () => {
                 <div className="flex justify-center">
                 <Link
                   href={
-                    "https://drive.google.com/file/d/1O97WCk2DrO9x6SHOqf7LvRbmHkMgGIb4/view?usp=sharing"
+                    "https://drive.google.com/file/d/1vVBf0OVJAkedMu4y8bwIIkTMLeyUnaAk/view?usp=sharing"
                   }
                   target="_blank"
                   className="w-fit"
