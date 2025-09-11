@@ -38,18 +38,27 @@ export default function Comets({
   const [comets, setComets] = useState<Comet[]>([]);
   const { x: mouseX, y: mouseY } = useMousePosition();
   const [canvasSize, setCanvasSize] = useState({ w: 0, h: 0 });
-  const { theme } = useTheme();
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Initialize elements based on theme
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !mounted) return;
 
     const rect = containerRef.current.getBoundingClientRect();
     setCanvasSize({ w: rect.width, h: rect.height });
 
     const newComets: Comet[] = [];
     
-    if (theme === 'dark') {
+    // Use resolvedTheme for more reliable theme detection
+    const currentTheme = resolvedTheme || theme;
+    
+    if (currentTheme === 'dark') {
       // Dark mode: comets and black holes
       // Add regular comets
       for (let i = 0; i < quantity; i++) {
@@ -134,7 +143,7 @@ export default function Comets({
     }
     
     setComets(newComets);
-  }, [quantity, speed, size, theme]);
+  }, [quantity, speed, size, theme, resolvedTheme, mounted]);
 
   // Update canvas size on resize
   useEffect(() => {
@@ -210,6 +219,20 @@ export default function Comets({
       }
     };
   }, [comets.length, animate]);
+
+  // Don't render until mounted to prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <div
+        className={cn(
+          className,
+          "pointer-events-none"
+        )}
+        ref={containerRef}
+        aria-hidden="true"
+      />
+    );
+  }
 
   return (
     <div

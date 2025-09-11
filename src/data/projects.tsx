@@ -1,5 +1,4 @@
 import AceTernityLogo from "@/components/logos/aceternity";
-import SlideShow from "@/components/slide-show";
 import { Button } from "@/components/ui/button";
 import { TypographyH3, TypographyP } from "@/components/ui/typography";
 import { ArrowUpRight, ExternalLink, Link2, MoveUpRight, Lock } from "lucide-react";
