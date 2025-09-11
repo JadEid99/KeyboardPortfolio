@@ -1,4 +1,3 @@
-// thoda zada ts ho gya idhar
 export enum SkillNames {
   JS = "js",
   PYTHON = "python",

@@ -588,7 +588,7 @@ const projects: Project[] = [
     title: "My Portfolio",
     src: "/assets/projects-screenshots/portfolio/landing2.png",
     screenshots: ["landing2.png"],
-    live: "http://jad-eid.com",
+    live: "https://jad-eid.com",
     github:"https://github.com/JadEid99/KeyboardPortfolio",
     skills: {
       frontend: [
