@@ -2,20 +2,32 @@ import AceTernityLogo from "@/components/logos/aceternity";
 import SlideShow from "@/components/slide-show";
 import { Button } from "@/components/ui/button";
 import { TypographyH3, TypographyP } from "@/components/ui/typography";
-import { ArrowUpRight, ExternalLink, Link2, MoveUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Link2, MoveUpRight, Lock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { RiNextjsFill, RiNodejsFill, RiReactjsFill } from "react-icons/ri";
 import {
+  SiAndroid,
+  SiApple,
+  SiAmazonaws,
+  SiAnsible,
   SiChakraui,
   SiDocker,
   SiExpress,
   SiFirebase,
+  SiGit,
+  SiGitlab,
+  SiGooglecloud,
   SiJavascript,
+  SiKeycloak,
+  SiKubernetes,
+  SiLinux,
   SiMongodb,
+  SiOpencv,
   SiPostgresql,
   SiPrisma,
+  SiPrometheus,
   SiPython,
   SiReactquery,
   SiSanity,
@@ -23,14 +35,19 @@ import {
   SiSocketdotio,
   SiSupabase,
   SiTailwindcss,
+  SiTerraform,
   SiThreedotjs,
   SiTypescript,
   SiVuedotjs,
 } from "react-icons/si";
+import { TbRobot, TbCube, TbLock } from "react-icons/tb";
 import { TbBrandFramerMotion } from "react-icons/tb";
 const BASE_PATH = "/assets/projects-screenshots";
 
 const ProjectsLinks = ({ live, repo }: { live: string; repo?: string }) => {
+  const isLinkedIn = repo?.includes('linkedin.com');
+  const linkLabel = isLinkedIn ? 'LinkedIn' : 'Github';
+  
   return (
     <div className="flex flex-col md:flex-row items-center justify-start gap-3 my-3 mb-8">
       <Link
@@ -52,7 +69,7 @@ const ProjectsLinks = ({ live, repo }: { live: string; repo?: string }) => {
           href={repo}
         >
           <Button variant={"default"} size={"sm"}>
-            Github
+            {linkLabel}
             <ArrowUpRight className="ml-3 w-5 h-5" />
           </Button>
         </Link>
@@ -222,6 +239,144 @@ const PROJECT_SKILLS = {
     fg: "white",
     icon: <SiSupabase />,
   },
+  aws: {
+    title: "AWS",
+    bg: "black",
+    fg: "white",
+    icon: <SiAmazonaws />,
+  },
+  gcp: {
+    title: "GCP",
+    bg: "black",
+    fg: "white",
+    icon: <SiGooglecloud />,
+  },
+  git: {
+    title: "Git",
+    bg: "black",
+    fg: "white",
+    icon: <SiGit />,
+  },
+  ios: {
+    title: "iOS",
+    bg: "black",
+    fg: "white",
+    icon: <SiApple />,
+  },
+  android: {
+    title: "Android",
+    bg: "black",
+    fg: "white",
+    icon: <SiAndroid />,
+  },
+  linux: {
+    title: "Linux",
+    bg: "black",
+    fg: "white",
+    icon: <SiLinux />,
+  },
+  opencv: {
+    title: "OpenCV",
+    bg: "black",
+    fg: "white",
+    icon: <SiOpencv />,
+  },
+  fanuc: {
+    title: "FANUC",
+    bg: "black",
+    fg: "white",
+    icon: <TbRobot />,
+  },
+  solidworks: {
+    title: "SolidWorks",
+    bg: "black",
+    fg: "white",
+    icon: <TbCube />,
+  },
+  bash: {
+    title: "Bash",
+    bg: "black",
+    fg: "white",
+    icon: "B",
+  },
+  ansible: {
+    title: "Ansible",
+    bg: "black",
+    fg: "white",
+    icon: <SiAnsible />,
+  },
+  vault: {
+    title: "Vault",
+    bg: "black",
+    fg: "white",
+    icon: <Lock />,
+  },
+  kubernetes: {
+    title: "Kubernetes",
+    bg: "black",
+    fg: "white",
+    icon: <SiKubernetes />,
+  },
+  gitlab: {
+    title: "GitLab CI/CD",
+    bg: "black",
+    fg: "white",
+    icon: <SiGitlab />,
+  },
+  artifactory: {
+    title: "Artifactory",
+    bg: "black",
+    fg: "white",
+    icon: <SiDocker />,
+  },
+  openshift: {
+    title: "OpenShift",
+    bg: "black",
+    fg: "white",
+    icon: <SiKubernetes />,
+  },
+  terraform: {
+    title: "Terraform",
+    bg: "black",
+    fg: "white",
+    icon: <SiTerraform />,
+  },
+  keycloak: {
+    title: "Keycloak",
+    bg: "black",
+    fg: "white",
+    icon: <SiKeycloak />,
+  },
+  openldap: {
+    title: "OpenLDAP",
+    bg: "black",
+    fg: "white",
+    icon: "LDAP",
+  },
+  privacyidea: {
+    title: "PrivacyIDEA",
+    bg: "black",
+    fg: "white",
+    icon: "MFA",
+  },
+  prometheus: {
+    title: "Prometheus",
+    bg: "black",
+    fg: "white",
+    icon: <SiPrometheus />,
+  },
+  ubuntu: {
+    title: "Ubuntu",
+    bg: "black",
+    fg: "white",
+    icon: <SiLinux />,
+  },
+  universalRobots: {
+    title: "Universal Robots",
+    bg: "black",
+    fg: "white",
+    icon: <TbRobot />,
+  },
 };
 export type Project = {
   id: string;
@@ -236,259 +391,168 @@ export type Project = {
 };
 const projects: Project[] = [
   {
-    id: "codingducks",
-    category: "Coding platform",
-    title: "Coding Ducks",
-    src: "/assets/projects-screenshots/codingducks/landing.png",
-    screenshots: ["landing.png"],
+    id: "evolve-consulting",
+    category: "Technical consulting",
+    title: "Evolve Consulting",
+    src: "/assets/projects-screenshots/evolve/evolve.png",
+    screenshots: ["evolve.png"],
     skills: {
       frontend: [
-        PROJECT_SKILLS.ts,
-        PROJECT_SKILLS.next,
-        PROJECT_SKILLS.chakra,
-        PROJECT_SKILLS.reactQuery,
-        PROJECT_SKILLS.firebase,
-      ],
-      backend: [
-        PROJECT_SKILLS.node,
-        PROJECT_SKILLS.express,
-        PROJECT_SKILLS.prisma,
+        PROJECT_SKILLS.aws,
+        PROJECT_SKILLS.gcp,
+        PROJECT_SKILLS.react,
         PROJECT_SKILLS.python,
-        PROJECT_SKILLS.postgres,
-        PROJECT_SKILLS.sockerio,
+        PROJECT_SKILLS.git,
+        PROJECT_SKILLS.node,
+        PROJECT_SKILLS.next,
+        PROJECT_SKILLS.ios,
+        PROJECT_SKILLS.android,
       ],
+      backend: [],
     },
-    live: "https://www.codingducks.xyz/",
-    github: "https://github.com/Naresh-Khatri/Coding-Ducks",
+    live: "https://www.evo-devs.com",
+    github: "https://www.linkedin.com/company/evolve-consulting-devs/",
     get content() {
       return (
         <div>
           <TypographyP className="font-mono text-2xl text-center">
-            Coding ducks = LeetCode + CodePen + CSS Battles
+            Evolve Consulting: We engineer the software backbone for startups and growing businesses.
           </TypographyP>
           <TypographyP className="font-mono ">
-            Coding Ducks is your coding dojo — where you level up your skills,
-            battle in real-time code duels, and earn badges like a true code
-            warrior. Track your progress, flex your brain, and climb the
-            leaderboard. Ready to quack the code?
+            We are a technical consulting partner for startups and established businesses. We provide end-to-end support to help you navigate the complexities of technology, offering services from initial technical consultations and project planning to the full development and deployment of your digital products.
+          </TypographyP>
+          <TypographyP className="font-mono ">
+            Our goal is to serve as an outsourced helping hand, offering ongoing support and dedicated consultants to guide your business from an idea, to an early-stage MVP, to a scalable, fully-realized platform.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
-          <TypographyH3 className="my-4 mt-8">Problems </TypographyH3>
+          <TypographyH3 className="my-4 mt-8">Our Services</TypographyH3>
           <p className="font-mono mb-2">
-            Solve coding problems similar to LeetCode, enhancing your
-            problem-solving skills across various languages.
+            From concept to deployment, we provide comprehensive technical solutions for your business needs.
           </p>
-          <SlideShow
-            images={[
-              `${BASE_PATH}/codingducks/problems.png`,
-              `${BASE_PATH}/codingducks/problem.png`,
-            ]}
-          />
-          <TypographyH3 className="my-4 mt-8">Ducklets</TypographyH3>
-          <p className="font-mono mb-2">
-            Collaborate in real-time with others in a multiplayer coding
-            environment, just like CodePen but with a social twist.
-          </p>
-          <SlideShow
-            images={[
-              `${BASE_PATH}/codingducks/ducklets.png`,
-              `${BASE_PATH}/codingducks/ducklet1.png`,
-              `${BASE_PATH}/codingducks/ducklet2.png`,
-            ]}
-          />
-          <TypographyH3 className="my-4 mt-8">UI Battles </TypographyH3>
-
-          <p className="font-mono mb-2">
-            Challenge yourself to create UI components with HTML/CSS/JS, and get
-            instant feedback with an automated similarity scoring.
-          </p>
-          <SlideShow
-            images={[
-              `${BASE_PATH}/codingducks/css-battles.png`,
-              `${BASE_PATH}/codingducks/css-battle.png`,
-              `${BASE_PATH}/codingducks/css-battle2.png`,
-            ]}
-          />
-          <TypographyH3 className="my-4 mt-8">Contests </TypographyH3>
-          <p className="font-mono mb-2">
-            Organize or participate in coding competitions. Successfully used to
-            host three contests during college.
-          </p>
-          <SlideShow images={[`${BASE_PATH}/codingducks/contests.png`]} />
-          <TypographyH3 className="my-4 mt-8">Playground </TypographyH3>
-          <p className="font-mono mb-2">
-            Test and execute your code instantly in my versatile online code
-            runner.
-          </p>
-          <SlideShow images={[`${BASE_PATH}/codingducks/playground.png`]} />
-          <TypographyH3 className="my-4 mt-8">Users</TypographyH3>
-
-          <p className="font-mono mb-2">
-            Track your progress, earn badges, and climb the rankings with
-            detailed user profiles and activity tracking.
-          </p>
-          <SlideShow
-            images={[
-              `${BASE_PATH}/codingducks/users.png`,
-              `${BASE_PATH}/codingducks/user.png`,
-            ]}
-          />
+          <div className="flex justify-center">
+            <Image
+              src={`${BASE_PATH}/evolve/evolve.png`}
+              alt="Evolve Consulting"
+              width={800}
+              height={600}
+              className="w-full max-w-4xl rounded-lg h-auto"
+            />
+          </div>
         </div>
       );
     },
   },
   {
-    id: "couponluxury",
-    category: "Coupon site",
-    title: "Coupon Luxury",
-    src: "/assets/projects-screenshots/couponluxury/landing.png",
-    screenshots: ["1.png", "2.png", "3.png", "4.png", "5.png"],
-    live: "https://www.couponluxury.com/",
+    id: "sewts-velum",
+    category: "Industrial Automation",
+    title: "sewts.VELUM",
+    src: "/assets/projects-screenshots/sewts/sewts_velum.jpg",
+    screenshots: ["sewts_velum2.webp"],
+    live: "https://www.sewts.com/automation-solutions/sewts-velum",
     skills: {
       frontend: [
-        PROJECT_SKILLS.js,
-        PROJECT_SKILLS.next,
-        PROJECT_SKILLS.chakra,
-        PROJECT_SKILLS.vue,
-      ],
-      backend: [
-        PROJECT_SKILLS.node,
-        PROJECT_SKILLS.express,
-        PROJECT_SKILLS.prisma,
-        PROJECT_SKILLS.postgres,
+        PROJECT_SKILLS.python,
+        PROJECT_SKILLS.linux,
         PROJECT_SKILLS.docker,
+        PROJECT_SKILLS.git,
+        PROJECT_SKILLS.opencv,
+        PROJECT_SKILLS.fanuc,
+        PROJECT_SKILLS.solidworks,
       ],
+      backend: [],
     },
     get content(): JSX.Element {
       return (
         <div>
           <TypographyP className="font-mono ">
-            CouponLuxury is your go-to destination for snagging the best deals
-            without lifting a finger. Whether you&apos;re hunting for the latest
-            discounts or trying to save a buck at your favorite stores,
-            CouponLuxury&apos;s got you covered.
+            sewts.VELUM represents the cutting edge of industrial automation, transforming the textile handling industry with AI-driven robotic precision. As a Software Engineer at sewts, I played a pivotal role in bringing this revolutionary system from concept to production, bridging one of the last manual gaps in industrial laundry automation.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
-          <p className="font-mono mb-2 mt-4">
-            As soon as you land, boom! You&apos;re greeted with the freshest
-            coupons and top-tier deals that&apos;ll make your wallet happy.
-          </p>
-          <SlideShow images={[`${BASE_PATH}/couponluxury/landing.png`]} />
-          <TypographyH3 className="my-4 ">Stores</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">The Challenge</TypographyH3>
           <p className="font-mono mb-2">
-            Dive into a comprehensive list of stores, each packed with exclusive
-            deals and discounts. It&apos;s like having a VIP pass to every sale
-            in town.
+            Industrial laundries operate in a highly automated environment, yet 30% of personnel costs are dedicated to manually feeding folding machines. VELUM addresses this critical gap by autonomously feeding towels and terrycloth into folding machines, eliminating manual labor while significantly reducing operating costs.
           </p>
-          <SlideShow
-            images={[
-              `${BASE_PATH}/couponluxury/stores.png`,
-              `${BASE_PATH}/couponluxury/store.png`,
-            ]}
-          />
-          <TypographyH3 className="my-4 mt-8">Categories</TypographyH3>
-
+          <TypographyH3 className="my-4 mt-8">My Contributions</TypographyH3>
           <p className="font-mono mb-2">
-            Whatever you&apos;re into—fashion, tech, food—you&apos;ll find it
-            neatly organized here. No more endless scrolling; just pick a
-            category and get the best offers instantly.
-          </p>
-          <SlideShow images={[`${BASE_PATH}/couponluxury/categories.png`]} />
-          <TypographyH3 className="my-4 mt-8">Custom CMS </TypographyH3>
-          <p className="font-mono mb-2">
-            Powered by Vue.js, this bad boy allows us to keep the content
-            dynamic and up-to-date. From flash sales to limited-time offers, my
-            CMS ensures everything&apos;s live and relevant.
-          </p>
-          <SlideShow
-            images={[
-              `${BASE_PATH}/couponluxury/cms-1.png`,
-              `${BASE_PATH}/couponluxury/cms-2.png`,
-            ]}
-          />
-          <p className="font-mono mb-2 mt-5">
-            Plus, I&apos;ve sprinkled in some extra magic like personalized
-            deal recommendations, user-friendly search features, and a sleek,
-            responsive design that works like a charm on any device.
+            Throughout the development lifecycle, I contributed across multiple domains including robotics programming, computer vision systems, hardware integration, and solution architecture. My work encompassed FANUC robot programming, OpenCV-based textile analysis, Linux system optimization, and Docker containerization for scalable deployment.
           </p>
           <p className="font-mono mb-2">
-            CouponLuxury isn&apos;t just a website; it&apos;s your personal deal-hunting
-            assistant, ensuring you never miss out on a bargain!
+            One of my most significant achievements was optimizing the system&apos;s performance, resulting in a <strong>40% increase in system output</strong>. This optimization involved fine-tuning robotic movements, improving computer vision algorithms for textile recognition, and streamlining the overall workflow efficiency.
           </p>
-          {/* <TypographyP className="my-4 mt-8">
-          <strong>Misc:</strong>
-          Hosted not one, not two, but THREE coding contests (Codemacha) during
-          college. Safe to say, Coding Ducks passed the vibe check.
-        </TypographyP>
-        <TypographyP className="my-4 mt-8">
-          <strong>Target Audience:</strong>
-          For all the novice coders out there ready to make their mark.
-        </TypographyP> */}
+          <div className="flex justify-center mt-8">
+            <Image
+              src={`${BASE_PATH}/sewts/sewts_velum2.webp`}
+              alt="sewts.VELUM System"
+              width={800}
+              height={600}
+              className="w-full max-w-4xl rounded-lg h-auto"
+            />
+          </div>
+          <TypographyH3 className="my-4 mt-8">Technical Innovation</TypographyH3>
+          <p className="font-mono mb-2">
+            VELUM&apos;s AI analyzes textiles in real-time, translating complex visual data into precise robotic commands. The system handles different textile types without restrictions in color, size, or texture, achieving what was previously impossible for mechanically-driven robots. My work on the computer vision pipeline and robotic control systems was crucial to this breakthrough.
+          </p>
+          <p className="font-mono mb-2">
+            The system processes up to 700 textiles per hour with minimal setup time, representing a paradigm shift in industrial automation. Working alongside a talented team, I helped create a solution that outperforms manual labor within 1.5 to 2.5 years, offering both immediate operational benefits and long-term cost savings for our customers.
+          </p>
         </div>
       );
     },
   },
   {
-    id: "the-booking-desk",
-    category: "Travel",
-    title: "The Booking Desk",
-    src: "/assets/projects-screenshots/the-booking-desk/landing.png",
-    screenshots: ["1.png"],
-    live: "https://thebookingdesk.com/",
+    id: "deutsche-telekom-iam",
+    category: "Enterprise Infrastructure",
+    title: "Deutsche Telekom IAM",
+    src: "/assets/projects-screenshots/IAM/IAM1.png",
+    screenshots: ["dt-iam-overview.png"],
+    live: "https://www.telekom.com/en",
     skills: {
       frontend: [
-        PROJECT_SKILLS.ts,
-        PROJECT_SKILLS.next,
-        PROJECT_SKILLS.aceternity,
-        PROJECT_SKILLS.tailwind,
+        PROJECT_SKILLS.linux,
+        PROJECT_SKILLS.ansible,
+        PROJECT_SKILLS.vault,
+        PROJECT_SKILLS.kubernetes,
+        PROJECT_SKILLS.gitlab,
+        PROJECT_SKILLS.artifactory,
+        PROJECT_SKILLS.openshift,
+        PROJECT_SKILLS.docker,
+        PROJECT_SKILLS.terraform,
+        PROJECT_SKILLS.postgres,
+        PROJECT_SKILLS.keycloak,
+        PROJECT_SKILLS.prometheus,
       ],
-      backend: [PROJECT_SKILLS.sanity],
+      backend: [],
     },
     get content() {
       return (
         <div>
           <TypographyP className="font-mono ">
-            The Booking Desk is your ultimate travel consultation hub, designed
-            to turn your wanderlust dreams into reality. With a focus on smooth
-            and visually captivating animations, navigating the site feels like
-            a breeze—it&apos;s almost as if the destinations are calling you.
+            Spearheaded the development of Deutsche Telekom's next-generation Identity and Access Management (IAM) system as a Senior Software Developer and Architect. Worked directly with customers to ensure requirements were met while building a comprehensive, secure infrastructure that supported DT's vision.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
-          <p className="font-mono mb-2 mt-8">
-            A sleek, modern interface greets you, featuring the latest travel
-            tips, deals, and must-visit spots around the globe.
-          </p>
-          <SlideShow images={[`${BASE_PATH}/the-booking-desk/landing.png`]} />
-          <TypographyH3 className="my-4 mt-8">Blogs</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">Project Overview</TypographyH3>
           <p className="font-mono mb-2">
-            Dive into the curated articles written by travel experts. Whether
-            you&apos;re looking for hidden gems or travel hacks, our blog section has
-            you covered.
+            The RIAM (Rebuild Identity and Access Management) project addressed Deutsche Telekom's growing security requirements and compliance standards. Previously, authentication methods were highly varied across systems, creating management complexity and security vulnerabilities. RIAM centralized and standardized security management while supporting Network Resilience goals.
           </p>
-          <SlideShow
-            images={[
-              `${BASE_PATH}/the-booking-desk/blogs.png`,
-              `${BASE_PATH}/the-booking-desk/blog.png`,
-            ]}
-          />
-          <TypographyH3 className="my-4 mt-8">Sanity CMS</TypographyH3>
-
+          <div className="flex justify-center mt-8">
+            <Image
+              src={`${BASE_PATH}/IAM/IAM2.png`}
+              alt="Deutsche Telekom IAM Architecture"
+              width={800}
+              height={600}
+              className="w-full max-w-4xl rounded-lg h-auto"
+            />
+          </div>
+          <TypographyH3 className="my-4 mt-8">Key Components</TypographyH3>
           <p className="font-mono mb-2">
-            Keeping everything fresh and up-to-date, I&apos;ve integrated Sanity CMS
-            to manage all the content with ease, ensuring you always get the
-            latest and greatest information.
+            <strong>Access Layer Sub-project:</strong> Implemented a central authentication system with MyCard certificates, Single Sign-On (SSO) via Keycloak, and Multi-Factor Authentication (MFA) for secure access to applications and servers within the DCN network.
           </p>
-          <SlideShow
-            images={[
-              `${BASE_PATH}/the-booking-desk/cms-1.png`,
-              `${BASE_PATH}/the-booking-desk/cms-2.png`,
-            ]}
-          />
-          <p className="font-mono mb-2 my-8">
-            With a stunning 100% score on Lighthouse, The Booking Desk isn&apos;t
-            just beautiful—it&apos;s built to perform. Whether you&apos;re planning your
-            next adventure or just daydreaming, our site delivers a top-notch
-            experience that&apos;s both informative and enjoyable.
+          <TypographyH3 className="my-4 mt-8">Technical Leadership</TypographyH3>
+          <p className="font-mono mb-2">
+            As a senior developer and architect, I led the technical implementation using modern DevOps practices including Kubernetes orchestration, Terraform infrastructure-as-code, GitLab CI/CD pipelines, and comprehensive monitoring with Prometheus. The system operated entirely within DT Technik infrastructure, ensuring independence from external dependencies while meeting the highest security standards.
+          </p>
+          <p className="font-mono mb-2">
+            This project represented a fundamental modernization of Deutsche Telekom's IAM system, significantly improving efficiency and security of access controls while supporting service continuity essential for premier customer experience.
           </p>
         </div>
       );
@@ -597,102 +661,58 @@ const projects: Project[] = [
     },
   },
   {
-    id: "jra",
-    category: "Result analyzer",
-    title: "JNTUA Results Analyzer",
-    src: "/assets/projects-screenshots/jra/1.png",
-    screenshots: ["1.png"],
-    live: "https://naresh-khatri.github.io/JNTUA-result-analyser-spa/#/",
+    id: "sortbot-bmw",
+    category: "Industrial Robotics",
+    title: "SortBot - BMW",
+    src: "/assets/projects-screenshots/BMW/bmw_sortbot1.jpg",
+    screenshots: ["bmw_sortbot1.jpg"],
+    live: "https://www.bmw.com",
     skills: {
-      frontend: [PROJECT_SKILLS.js, PROJECT_SKILLS.vue],
-      backend: [
-        PROJECT_SKILLS.node,
-        PROJECT_SKILLS.mongo,
-        PROJECT_SKILLS.express,
+      frontend: [
+        PROJECT_SKILLS.python,
+        PROJECT_SKILLS.opencv,
         PROJECT_SKILLS.docker,
+        PROJECT_SKILLS.ubuntu,
+        PROJECT_SKILLS.git,
+        PROJECT_SKILLS.universalRobots,
       ],
+      backend: [],
     },
     get content() {
       return (
         <div>
           <TypographyP className="font-mono ">
-            JNTUA Results Analyzer was a revolutionary tool designed to simplify
-            and enhance the experience of accessing academic results. It served
-            as a powerful proxy between the JNTUA university results website and
-            its users, offering a range of features that made result analysis
-            faster and more efficient. Here&apos;s what made it stand out:
+            SortBot represented a breakthrough in automotive manufacturing automation, revolutionizing BMW's vehicle production process across multiple manufacturing plants in Germany. As a Software Engineer, I played a crucial role in finalizing this robotics automation system and successfully transitioning it from development to production deployment.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
-          <SlideShow images={[`${BASE_PATH}/jra/1.png`]} />
-          <TypographyH3 className="my-4 mt-8">
-            Effortless Results Retrieval
-          </TypographyH3>
-          {/* Effortless Results Retrieval: */}
-          <ul className="list-disc ml-6">
-            <li className="font-mono">
-              Search all your results using a single roll number, eliminating
-              the tedious task of sifting through thousands of rows on the
-              official site.
-            </li>
-          </ul>
-          <TypographyH3 className="my-4 mt-8">Class-Wise Results:</TypographyH3>
-          <ul className="list-disc ml-6">
-            <li className="font-mono">
-              class-wise results effortlessly by entering a roll number range.
-              No more manual searches or filtering.
-            </li>
-          </ul>
-          <TypographyH3 className="my-4 mt-8">Faculty Features:</TypographyH3>
-          <ul className="list-disc ml-6">
-            <li className="font-mono">
-              Faculty members could download batch results in Excel format,
-              making administrative tasks a breeze.
-            </li>
-          </ul>
-          <TypographyH3 className="my-4 mt-8">
-            Enhanced Data Insights:
-          </TypographyH3>
-          <ul className="list-disc ml-6">
-            <li className="font-mono">
-              Each result came with additional features including:
-              <ul className="list-disc font-mono ml-6">
-                <li>
-                  <strong>CGPA Calculations: </strong>Easily track your
-                  cumulative grade point average.
-                </li>
-                <li>
-                  <strong>Charts:</strong> Visualize your academic performance
-                  with comprehensive charts.
-                </li>
-                <li>
-                  <strong>Future Projections:</strong> Get insights into
-                  potential future outcomes based on current performance.
-                </li>
-                <li>
-                  <strong> Backlog Counts: </strong>Keep track of your backlog
-                  subjects at a glance.
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <TypographyH3 className="my-4 mt-8">Performance:</TypographyH3>
-          <ul className="list-disc ml-6">
-            <li className="font-mono">
-              The application was significantly faster and more efficient than
-              the official site, providing a smoother user experience.
-            </li>
-          </ul>
-          <TypographyH3 className="my-4 mt-8">Downfall:</TypographyH3>
-          <ul className="list-disc ml-6">
-            <li className="font-mono">
-              Unfortunately, as of May 2022, the tool stopped working due to the
-              introduction of CAPTCHA on the official JNTUA results site, which
-              disrupted the seamless functionality of the app. JNTUA Results
-              Analyzer transformed the way students and faculty interacted with
-              academic results, making it a must-have tool until its unexpected
-              shutdown.
-            </li>
-          </ul>
+          <div className="flex justify-center mt-8">
+            <Image
+              src={`${BASE_PATH}/BMW/bmw_sortbot2.png`}
+              alt="SortBot System at BMW Manufacturing Plant"
+              width={800}
+              height={600}
+              className="w-full max-w-4xl rounded-lg h-auto"
+            />
+          </div>
+          <TypographyH3 className="my-4 mt-8">System Overview</TypographyH3>
+          <p className="font-mono mb-2">
+            SortBot was designed to automate the handling of KLTs (Kleinladungsträger - small load carriers) containing essential vehicle parts throughout BMW's manufacturing workflow. This sophisticated robotics system significantly enhanced production efficiency while reducing manual labor and potential human errors in the critical parts handling process.
+          </p>
+          <TypographyH3 className="my-4 mt-8">Technical Architecture</TypographyH3>
+          <p className="font-mono mb-2">
+            The system integrated advanced UR10 robotic arms with a comprehensive computer vision pipeline built using Python and OpenCV. This combination enabled precise object recognition, positioning, and manipulation of various KLT types and configurations. The entire system was containerized using Docker and deployed on Ubuntu Linux infrastructure for optimal performance and scalability.
+          </p>
+          <TypographyH3 className="my-4 mt-8">My Contributions</TypographyH3>
+          <p className="font-mono mb-2">
+            As a Software Engineer on this project, I was responsible for putting the finishing touches on the SortBot system and ensuring its successful production deployment. My work encompassed final system integration, performance optimization, and comprehensive testing to guarantee reliability in real-world manufacturing environments.
+          </p>
+          <p className="font-mono mb-2">
+            I played a pivotal role in transitioning SortBot from development to production, coordinating deployment across several BMW manufacturing plants throughout Germany. This involved meticulous system validation, operator training, and establishing monitoring protocols to ensure seamless operation in high-volume production settings.
+          </p>
+          <TypographyH3 className="my-4 mt-8">Impact & Results</TypographyH3>
+          <p className="font-mono mb-2">
+            SortBot's deployment marked a significant milestone in BMW's digital transformation journey, demonstrating the company's commitment to Industry 4.0 principles. The system's successful implementation across multiple plants showcased the scalability and reliability of the robotic automation solution, contributing to BMW's continued leadership in automotive manufacturing innovation.
+          </p>
         </div>
       );
     },
