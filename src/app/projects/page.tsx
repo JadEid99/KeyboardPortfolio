@@ -23,15 +23,14 @@ const PROJECTS = [
   },
   {
     id: 2,
-    name: "Ghost Chat",
-    description: `GhostChat is an anonymous messaging app that allows users to connect without revealing their identities. 
-Join the community for intriguing conversations and mysterious encounters.`,
-    link: "https://ghostchatt.vercel.app/",
+    name: "Open Telekom Cloud",
+    description: `Enterprise cloud architecture project where I architected and deployed Open Telekom Cloud (OTC) 
+internal cloud platform for major customers including DHL. Led comprehensive lift-and-shift migrations, 
+reducing operational costs while enhancing infrastructure scalability.`,
+    link: "https://open-telekom-cloud.com",
     images: [
-      "/assets/projects-screenshots/ghostchat/1.png",
-      "/assets/projects-screenshots/ghostchat/2.png",
-      "/assets/projects-screenshots/ghostchat/3.png",
-      "/assets/projects-screenshots/ghostchat/4.png",
+      "/assets/projects-screenshots/OTC/otc1.jpeg",
+      "/assets/projects-screenshots/OTC/otc2.jpg",
     ],
   },
   {
@@ -48,11 +47,12 @@ in system output while working across robotics, computer vision, and hardware in
   },
   {
     id: 4,
-    name: "JNTUA Results Analyser",
-    description: `the go-to app for JNTUA students, empowering them to analyze, compare, and view classwise results effortlessly.
-     Dive into your academic journey with ease, track your progress, and gain valuable insights.`,
-    link: "/projects/4",
-    images: ["/assets/projects-screenshots/jra/1.png"],
+    name: "SortBot - BMW",
+    description: `Breakthrough robotics automation system deployed across BMW manufacturing plants in Germany. 
+     SortBot automates KLT (small load carrier) handling for vehicle parts, integrating UR10 robots with 
+     computer vision to revolutionize automotive production workflows.`,
+    link: "https://www.bmw.com",
+    images: ["/assets/projects-screenshots/BMW/bmw_sortbot1.jpg"],
   },
 ];
 function Page() {

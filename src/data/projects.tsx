@@ -377,6 +377,30 @@ const PROJECT_SKILLS = {
     fg: "white",
     icon: <TbRobot />,
   },
+  openTelekomCloud: {
+    title: "Open Telekom Cloud",
+    bg: "black",
+    fg: "white",
+    icon: <SiGooglecloud />,
+  },
+  openStack: {
+    title: "OpenStack",
+    bg: "black",
+    fg: "white",
+    icon: <SiKubernetes />,
+  },
+  ceph: {
+    title: "Ceph",
+    bg: "black",
+    fg: "white",
+    icon: <SiDocker />,
+  },
+  consul: {
+    title: "Consul",
+    bg: "black",
+    fg: "white",
+    icon: <SiDocker />,
+  },
 };
 export type Project = {
   id: string;
@@ -394,7 +418,7 @@ const projects: Project[] = [
     id: "evolve-consulting",
     category: "Technical consulting",
     title: "Evolve Consulting",
-    src: "/assets/projects-screenshots/evolve/evolve.png",
+    src: "/assets/projects-screenshots/evolve/evodevs.png",
     screenshots: ["evolve.png"],
     skills: {
       frontend: [
@@ -562,10 +586,10 @@ const projects: Project[] = [
     id: "portfolio",
     category: "Portfolio",
     title: "My Portfolio",
-    src: "/assets/projects-screenshots/portfolio/landing.png",
-    screenshots: ["1.png"],
-    live: "http://nareshkhatri.vercel.app",
-    github:"https://github.com/Naresh-Khatri/Portfolio",
+    src: "/assets/projects-screenshots/portfolio/landing2.png",
+    screenshots: ["landing2.png"],
+    live: "http://jad-eid.com",
+    github:"https://github.com/JadEid99/KeyboardPortfolio",
     skills: {
       frontend: [
         PROJECT_SKILLS.ts,
@@ -582,80 +606,87 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono ">
-            Welcome to my digital playground, where creativity meets code in the
-            dopest way possible.
+            Developed a modern, interactive portfolio website showcasing my professional journey and technical expertise. This responsive web application combines cutting-edge design with advanced functionality, featuring a custom 3D interactive keyboard, dynamic animations, and a seamless user experience across all devices.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
-          <TypographyH3 className="my-4 mt-8">
-            Beautiful 3D Objects{" "}
-          </TypographyH3>
+          <div className="flex justify-center mt-8">
+            <Image
+              src={`${BASE_PATH}/portfolio/landing1.png`}
+              alt="Portfolio Website Landing Page"
+              width={800}
+              height={600}
+              className="w-full max-w-4xl rounded-lg h-auto"
+            />
+          </div>
+          <TypographyH3 className="my-4 mt-8">Technical Implementation</TypographyH3>
           <p className="font-mono mb-2">
-            Did you see that 3D keyboard modal? Yeah! I made that. That
-            interactive keyboard is being rendered in 3D on a webpage 🤯, and
-            pressing each keycap reveals a skill in a goofy way. It&apos;s like
-            typing, but make it art.
+            Built using Next.js with TypeScript for robust type safety and optimal performance. Integrated Spline 3D for the interactive keyboard component, allowing users to explore skills through an engaging 3D interface. The design system leverages Tailwind CSS and custom animations to create a cohesive, modern aesthetic.
           </p>
-          <SlideShow
-            images={[
-              `${BASE_PATH}/portfolio/landing.png`,
-              `${BASE_PATH}/portfolio/skills.png`,
-            ]}
-          />
-          <TypographyH3 className="my-4 ">Space Theme</TypographyH3>
+          <TypographyH3 className="my-4 mt-8">Key Features</TypographyH3>
           <p className="font-mono mb-2">
-            Dark background + floating particles = out-of-this-world cool.
+            The website features a responsive design with smooth scroll animations, dynamic theme switching, and interactive 3D elements. The skills section includes an innovative 3D keyboard where each key reveals different technologies, while the projects section showcases detailed case studies with comprehensive descriptions and technical implementations.
           </p>
-          <SlideShow images={[`${BASE_PATH}/portfolio/navbar.png`]} />
-          <TypographyH3 className="my-4 mt-8">Projects</TypographyH3>
-
-          <p className="font-mono mb-2">
-            My top personal and freelance projects — no filler, all killer.
-          </p>
-          <SlideShow
-            images={[
-              `${BASE_PATH}/portfolio/projects.png`,
-              `${BASE_PATH}/portfolio/project.png`,
-            ]}
-          />
-          <p className="font-mono mb-2 mt-8 text-center">
-            This site&apos;s not just a portfolio — it&apos;s a whole vibe.
-          </p>
+          <div className="flex justify-center mt-8">
+            <Image
+              src={`${BASE_PATH}/portfolio/skills.png`}
+              alt="Interactive 3D Skills Section"
+              width={800}
+              height={600}
+              className="w-full max-w-4xl rounded-lg h-auto"
+            />
+          </div>
         </div>
       );
     },
   },
   {
-    id: "ghostchat",
-    category: "Anonymous chat",
-    title: "GhostChat",
-    src: "/assets/projects-screenshots/ghostchat/1.png",
-    screenshots: ["1.png", "2.png", "3.png", "4.png"],
-    live: "https://ghostchat.vercel.app",
-    github:"https://github.com/Naresh-Khatri/GhostChat",
+    id: "open-telekom-cloud",
+    category: "Cloud Architecture",
+    title: "Open Telekom Cloud",
+    src: "/assets/projects-screenshots/OTC/otc1.jpeg",
+    screenshots: ["otc2.jpg"],
+    live: "https://open-telekom-cloud.com",
     skills: {
-      frontend: [PROJECT_SKILLS.js, PROJECT_SKILLS.next, PROJECT_SKILLS.chakra],
-      backend: [PROJECT_SKILLS.supabase],
+      frontend: [
+        PROJECT_SKILLS.openTelekomCloud,
+        PROJECT_SKILLS.openStack,
+        PROJECT_SKILLS.ceph,
+        PROJECT_SKILLS.consul,
+      ],
+      backend: [],
     },
     get content() {
       return (
         <div>
           <TypographyP className="font-mono ">
-            Ghostchat is your go-to spot for sending anonymous messages without
-            leaving a trace. Powered by Supabase, it&apos;s all about keeping things
-            low-key and secure. Whether you&apos;re sharing secrets, giving feedback,
-            or just having some fun, Ghostchat ensures your identity stays
-            hidden, while your voice is heard. Say what you want, without the
-            worry.
+            Architected and deployed Open Telekom Cloud (OTC) internal cloud platform for enterprise customers, significantly reducing their operational costs while enhancing infrastructure scalability and reliability. Led comprehensive cloud migration projects including a major lift-and-shift deployment for DHL, transitioning their applications to a private cloud environment.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
-          <SlideShow
-            images={[
-              `${BASE_PATH}/ghostchat/1.png`,
-              `${BASE_PATH}/ghostchat/2.png`,
-              `${BASE_PATH}/ghostchat/3.png`,
-              `${BASE_PATH}/ghostchat/4.png`,
-            ]}
-          />
+          <div className="flex justify-center mt-8">
+            <Image
+              src={`${BASE_PATH}/OTC/otc2.jpg`}
+              alt="Open Telekom Cloud Architecture"
+              width={800}
+              height={600}
+              className="w-full max-w-4xl rounded-lg h-auto"
+            />
+          </div>
+          <TypographyH3 className="my-4 mt-8">Project Overview</TypographyH3>
+          <p className="font-mono mb-2">
+            As a Cloud Architect, I designed and implemented enterprise-grade cloud infrastructure solutions using Open Telekom Cloud technology. The project focused on creating scalable, secure, and cost-effective private cloud deployments for large-scale organizations, enabling them to modernize their IT infrastructure while maintaining compliance and security standards.
+          </p>
+          <TypographyH3 className="my-4 mt-8">Key Achievements</TypographyH3>
+          <p className="font-mono mb-2">
+            Successfully executed a comprehensive lift-and-shift migration for DHL, moving their critical applications to a private OTC deployment. This migration resulted in significant operational cost reductions while improving system reliability and performance. Collaborated closely with Huawei as the system integrator to procure and configure necessary hardware infrastructure.
+          </p>
+          <TypographyH3 className="my-4 mt-8">Technical Implementation</TypographyH3>
+          <p className="font-mono mb-2">
+            The solution leveraged OpenStack for cloud orchestration, Ceph for distributed storage, and Consul for service discovery and configuration management. Worked directly with customers to understand their specific requirements, designed custom cloud architectures, and ensured seamless integration with existing enterprise systems and workflows.
+          </p>
+          <TypographyH3 className="my-4 mt-8">Stakeholder Collaboration</TypographyH3>
+          <p className="font-mono mb-2">
+            Led cross-functional collaboration with Huawei technical teams, customer stakeholders, and internal engineering teams. Conducted regular meetings with customers to gather requirements, present architectural designs, and ensure successful project delivery. This role required strong technical expertise combined with excellent communication and project management skills.
+          </p>
         </div>
       );
     },
