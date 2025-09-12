@@ -83,8 +83,8 @@ const ProjectContents = ({ project }: { project: Project }) => {
         {project.title}
       </h4>
       <div className="flex flex-col md:flex-row md:justify-evenly max-w-screen overflow-hidden md:overflow-visible">
-        <div className="flex flex-row md:flex-col-reverse justify-center items-center gap-2 text-3xl mb-8">
-          <p className="text-sm mt-1 text-neutral-600 dark:text-neutral-500">
+        <div className="flex flex-col md:flex-col-reverse justify-center items-center gap-2 text-3xl mb-8">
+          <p className="text-sm text-neutral-600 dark:text-neutral-500">
             Tech Stack
           </p>
           {project.skills.frontend?.length > 0 && (

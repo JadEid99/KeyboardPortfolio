@@ -133,8 +133,8 @@ const FloatingDockDesktop = ({
         onMouseLeave={() => mouseX.set(Infinity)}
         className={cn(
           // "hidden md:flex",
-          "flex gap-2 md:gap-4",
-          "mx-auto h-16 items-end  rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3",
+          "grid grid-cols-4 md:flex md:flex-nowrap gap-2 md:gap-4",
+          "mx-auto h-auto md:h-16 items-center md:items-end rounded-2xl bg-gray-50 dark:bg-neutral-900 px-2 md:px-4 py-2 md:pb-3",
           // "blur-sm brightness-50",
           className
         )}
@@ -186,14 +186,14 @@ function IconContainer({
     return val - bounds.x - bounds.width / 2;
   });
 
-  let widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  let heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+  let widthTransform = useTransform(distance, [-150, 0, 150], [32, 64, 32]);
+  let heightTransform = useTransform(distance, [-150, 0, 150], [32, 64, 32]);
 
-  let widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
+  let widthTransformIcon = useTransform(distance, [-150, 0, 150], [16, 32, 16]);
   let heightTransformIcon = useTransform(
     distance,
     [-150, 0, 150],
-    [20, 40, 20]
+    [16, 32, 16]
   );
 
   let width = useSpring(widthTransform, {
@@ -219,6 +219,15 @@ function IconContainer({
   });
 
   const [hovered, setHovered] = useState(false);
+  const [touched, setTouched] = useState(false);
+
+  const handleTouchStart = () => {
+    setTouched(true);
+    // Auto-hide after 2 seconds on mobile
+    setTimeout(() => setTouched(false), 2000);
+  };
+
+  const isShowingTooltip = hovered || touched;
 
   return (
     <motion.div
@@ -226,10 +235,11 @@ function IconContainer({
       style={{ width, height }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative"
+      onTouchStart={handleTouchStart}
+      className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative w-8 h-8 md:w-auto md:h-auto"
     >
       <AnimatePresence>
-        {hovered && (
+        {isShowingTooltip && (
           <motion.div
             initial={{ opacity: 0, y: 10, x: "-50%" }}
             animate={{ opacity: 1, y: 0, x: "-50%" }}
