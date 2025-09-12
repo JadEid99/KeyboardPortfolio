@@ -111,7 +111,7 @@ export const ModalBody = ({
           <motion.div
             ref={modalRef}
             className={cn(
-              "min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden",
+              "w-[95vw] md:w-auto min-h-[50%] max-h-[85dvh] md:max-h-[90%] md:max-w-[40rem] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 rounded-2xl relative z-50 flex flex-col overflow-hidden",
               className
             )}
             initial={{
@@ -138,9 +138,9 @@ export const ModalBody = ({
             }}
           >
             <CloseIcon />
-            <ScrollArea className="h-[80dvh] w-full rounded-md border">
-              {children}
-            </ScrollArea>
+        <div className="flex-1 w-full overflow-y-auto overflow-x-hidden">
+          {children}
+        </div>
           </motion.div>
         </motion.div>
       )}
@@ -155,8 +155,27 @@ export const ModalContent = ({
   children: ReactNode;
   className?: string;
 }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
-    <div className={cn("flex flex-col flex-1 p-3 md:p-10", className)}>
+    <div 
+      className={cn("flex flex-col flex-1 min-w-0 w-full max-w-full overflow-hidden p-3 md:p-10", className)}
+      style={{ 
+        height: '100%',
+        transform: isMobile ? 'scale(0.75)' : 'scale(1)',
+        transformOrigin: 'top center'
+      }}
+    >
       {children}
     </div>
   );
