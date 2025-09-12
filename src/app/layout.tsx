@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   description: config.description.long,
   keywords: config.keywords,
   authors: [{ name: config.author }],
+  icons: {
+    icon: '/favicon.ico', // or '/your-favicon.png'
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png', // optional
+  },
   openGraph: {
     title: config.title,
     description: config.description.short,
