@@ -79,7 +79,7 @@ export default ProjectsSection;
 const ProjectContents = ({ project }: { project: Project }) => {
   return (
     <>
-      <h4 className="text-lg md:text-2xl text-white font-bold text-center mb-8">
+      <h4 className="text-lg md:text-2xl text-black dark:text-white font-bold text-center mb-8">
         {project.title}
       </h4>
       <div className="flex flex-col md:flex-row md:justify-evenly max-w-screen overflow-hidden md:overflow-visible">
