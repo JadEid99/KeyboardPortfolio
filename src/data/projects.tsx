@@ -32,6 +32,7 @@ import {
   SiSanity,
   SiShadcnui,
   SiSocketdotio,
+  SiStripe,
   SiSupabase,
   SiTailwindcss,
   SiTerraform,
@@ -400,6 +401,12 @@ const PROJECT_SKILLS = {
     fg: "white",
     icon: <SiDocker />,
   },
+  stripe: {
+    title: "Stripe",
+    bg: "black",
+    fg: "white",
+    icon: <SiStripe />,
+  },
 };
 export type Project = {
   id: string;
@@ -639,18 +646,19 @@ const projects: Project[] = [
     },
   },
   {
-    id: "open-telekom-cloud",
-    category: "Cloud Architecture",
-    title: "Open Telekom Cloud",
-    src: "/assets/projects-screenshots/OTC/otc1.jpeg",
-    screenshots: ["otc2.jpg"],
-    live: "https://open-telekom-cloud.com",
+    id: "cloudchamp",
+    category: "EdTech",
+    title: "CloudChamp",
+    src: "/assets/images/CloudChamp.jpg",
+    screenshots: ["CloudChampScreenShot.png"],
+    live: "https://cloudchamp.de",
     skills: {
       frontend: [
-        PROJECT_SKILLS.openTelekomCloud,
-        PROJECT_SKILLS.openStack,
-        PROJECT_SKILLS.ceph,
-        PROJECT_SKILLS.consul,
+        PROJECT_SKILLS.aws,
+        PROJECT_SKILLS.react,
+        PROJECT_SKILLS.ts,
+        PROJECT_SKILLS.git,
+        PROJECT_SKILLS.stripe,
       ],
       backend: [],
     },
@@ -658,13 +666,13 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono ">
-            Architected and deployed Open Telekom Cloud (OTC) internal cloud platform for enterprise customers, significantly reducing their operational costs while enhancing infrastructure scalability and reliability. Led comprehensive cloud migration projects including a major lift-and-shift deployment for DHL, transitioning their applications to a private cloud environment.
+            CloudChamp is an educational platform designed to help students prepare for AWS certification exams. The platform provides a curated collection of study resources, practice questions, and structured learning paths to guide aspiring cloud professionals from beginner to certified.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
           <div className="flex justify-center mt-8">
             <Image
-              src={`${BASE_PATH}/OTC/otc2.jpg`}
-              alt="Open Telekom Cloud Architecture"
+              src={"/assets/images/CloudChampScreenShot.png"}
+              alt="CloudChamp Platform"
               width={800}
               height={600}
               className="w-full max-w-4xl rounded-lg h-auto"
@@ -672,19 +680,11 @@ const projects: Project[] = [
           </div>
           <TypographyH3 className="my-4 mt-8">Project Overview</TypographyH3>
           <p className="font-mono mb-2">
-            As a Cloud Architect, I designed and implemented enterprise-grade cloud infrastructure solutions using Open Telekom Cloud technology. The project focused on creating scalable, secure, and cost-effective private cloud deployments for large-scale organizations, enabling them to modernize their IT infrastructure while maintaining compliance and security standards.
-          </p>
-          <TypographyH3 className="my-4 mt-8">Key Achievements</TypographyH3>
-          <p className="font-mono mb-2">
-            Successfully executed a comprehensive lift-and-shift migration for DHL, moving their critical applications to a private OTC deployment. This migration resulted in significant operational cost reductions while improving system reliability and performance. Collaborated closely with Huawei as the system integrator to procure and configure necessary hardware infrastructure.
+            Built with React and TypeScript, CloudChamp offers a clean, responsive interface where users can browse study materials organized by certification track. Stripe integration handles subscription-based access to premium content, enabling a sustainable model for delivering high-quality exam preparation resources.
           </p>
           <TypographyH3 className="my-4 mt-8">Technical Implementation</TypographyH3>
           <p className="font-mono mb-2">
-            The solution leveraged OpenStack for cloud orchestration, Ceph for distributed storage, and Consul for service discovery and configuration management. Worked directly with customers to understand their specific requirements, designed custom cloud architectures, and ensured seamless integration with existing enterprise systems and workflows.
-          </p>
-          <TypographyH3 className="my-4 mt-8">Stakeholder Collaboration</TypographyH3>
-          <p className="font-mono mb-2">
-            Led cross-functional collaboration with Huawei technical teams, customer stakeholders, and internal engineering teams. Conducted regular meetings with customers to gather requirements, present architectural designs, and ensure successful project delivery. This role required strong technical expertise combined with excellent communication and project management skills.
+            The platform is hosted on AWS, leveraging cloud-native services for scalability and reliability. The frontend is built with React and TypeScript for type safety and maintainability, while Stripe powers the payment and subscription management. The architecture is designed to scale with the growing user base as more certification tracks are added.
           </p>
         </div>
       );

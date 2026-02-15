@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
 import { File, Github, Linkedin } from "lucide-react";
@@ -48,7 +49,9 @@ const HeroSection = () => {
                       "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
                     )}
                   >
-                    Software Engineer
+                    Software & Cloud
+                    <br />
+                    Engineer
                   </p>
                 </BlurIn>
               </div>
@@ -92,6 +95,32 @@ const HeroSection = () => {
                   >
                     <Button variant={"outline"} className="w-12 h-12 p-0">
                       <SiLinkedin size={24} />
+                    </Button>
+                  </Link>
+                </div>
+                <div className="flex justify-center gap-3">
+                  <Link
+                    href="https://www.credly.com/badges/3555ea61-2f8d-4002-a23a-1ec8a1901593/public_url"
+                    target="_blank"
+                  >
+                    <Button variant={"outline"} className="w-12 h-12 p-0">
+                      <Image src="/assets/images/aws-certified-solutions-architect-professional.png" alt="AWS SAP" width={28} height={28} />
+                    </Button>
+                  </Link>
+                  <Link
+                    href="https://www.credly.com/badges/748da346-648f-443b-aa8b-50fc4e3e1646/public_url"
+                    target="_blank"
+                  >
+                    <Button variant={"outline"} className="w-12 h-12 p-0">
+                      <Image src="/assets/images/aws-certified-solutions-architect-associate.png" alt="AWS SAA" width={28} height={28} />
+                    </Button>
+                  </Link>
+                  <Link
+                    href="https://www.credly.com/badges/048240ca-c89f-41a7-b8e3-d5946a609d6b/public_url"
+                    target="_blank"
+                  >
+                    <Button variant={"outline"} className="w-12 h-12 p-0">
+                      <Image src="/assets/images/professional-cloud-architect-certification.png" alt="GCP PCA" width={28} height={28} />
                     </Button>
                   </Link>
                 </div>
