@@ -600,8 +600,6 @@ const projects: Project[] = [
       frontend: [
         PROJECT_SKILLS.ts,
         PROJECT_SKILLS.next,
-        PROJECT_SKILLS.shadcn,
-        PROJECT_SKILLS.aceternity,
         PROJECT_SKILLS.framerMotion,
         PROJECT_SKILLS.tailwind,
         PROJECT_SKILLS.spline,
