@@ -258,11 +258,11 @@ export default function Comets({
           {/* Optimized images with performance optimizations */}
           <Image
             src={
-              comet.type === 'blackhole' ? "/assets/images/transparent_blackhole.gif" :
+              comet.type === 'blackhole' ? "/assets/images/transparent_blackhole.webp" :
               comet.type === 'comet' ? "/assets/images/blue_comet.gif" :
-              comet.type === 'beachball' ? "/assets/images/beach_ball.png" :
-              comet.type === 'cloud' ? "/assets/images/cloud.png" :
-              "/assets/images/seagull.gif"
+              comet.type === 'beachball' ? "/assets/images/beach_ball.webp" :
+              comet.type === 'cloud' ? "/assets/images/cloud.webp" :
+              "/assets/images/seagull.webp"
             }
             alt={
               comet.type === 'blackhole' ? "Black Hole" :
@@ -289,8 +289,7 @@ export default function Comets({
                 ? `brightness(${0.9 + Math.sin(comet.id) * 0.1})`
                 : `brightness(${1.0 + Math.sin(comet.id) * 0.1})`,
             }}
-            priority={comet.id < 3} // Prioritize first 3 elements
-            unoptimized={comet.type === 'comet' || comet.type === 'blackhole' || comet.type === 'seagull'} // GIFs need unoptimized
+            unoptimized // animated GIF/WebP must bypass the optimizer to keep animating
           />
         </div>
       ))}

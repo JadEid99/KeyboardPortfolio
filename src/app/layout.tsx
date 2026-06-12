@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Archivo_Black } from "next/font/google";
 import "./globals.css";
 import ElasticCursor from "@/components/ui/ElasticCursor";
-import Particles from "@/components/Particles";
-import Comets from "@/components/Comets";
+import BackgroundEffects from "@/components/background-effects";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header/header";
 import { Toaster } from "@/components/ui/toaster";
@@ -61,18 +60,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={[archivoBlack.className].join(" ")}>
       <head>
-        <Script
-          defer
-          src={process.env.UMAMI_DOMAIN}
-          data-website-id={process.env.UMAMI_SITE_ID}
-        ></Script>
-        {/* Preload assets for better performance */}
-        <link rel="preload" as="image" href="/assets/images/blue_comet.gif" />
-        <link rel="preload" as="image" href="/assets/images/transparent_blackhole.gif" />
-        <link rel="preload" as="image" href="/assets/images/beach_ball.png" />
-        <link rel="preload" as="image" href="/assets/images/cloud.png" />
-        <link rel="preload" as="image" href="/assets/images/seagull.gif" />
-        {/* <Analytics /> */}
+        {process.env.UMAMI_DOMAIN && process.env.UMAMI_SITE_ID && (
+          <Script
+            defer
+            src={process.env.UMAMI_DOMAIN}
+            data-website-id={process.env.UMAMI_SITE_ID}
+          ></Script>
+        )}
       </head>
       <body>
         <ThemeProvider
@@ -81,16 +75,7 @@ export default function RootLayout({
           enableSystem={true}
           disableTransitionOnChange={false}
         >
-          <Particles
-            className="fixed inset-0 -z-10 animate-fade-in"
-            quantity={100}
-          />
-          <Comets
-            className="fixed inset-0 -z-5 animate-fade-in"
-            quantity={8}
-            speed={0.6}
-            size={45}
-          />
+          <BackgroundEffects />
           <Preloader>
             <Header />
             {children}
